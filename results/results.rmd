@@ -1,0 +1,19 @@
+# Results
+
+When viewing a sample of the dataset, we see multiple variables which are categorical, and the wait times are the only continuous variables.
+
+The standard error of the estimate is 124.2, where it is the standard deviation of the variation of observations around the regression line (it is the standard deviation of the regression model). So waitimes average can be estimated as +-2(124.2) = 248.4. As this value is large when compared to the average waittimes in the sample, then the variation of observed y values from the regression line is also large. For future research, we should look for other variables which can explain more of the variation in waittimes (ie. costs for procedures, facilities funding, staffing levels, etc.).
+Multiple Coefficient of Determination: SST = SSE + SSR
+
+R^2 is 0.3872, but we do have to utilize the adjusted R^2, as we have multiple independent variables. The adjusted R^2 is 0.3612, where 36.12% of the variation in waittimes is explained by the variation in specialty, taking into account the sample size and number of independent variables
+Is the Model Significant? Hypotheses: H0: \( \beta \ 1 \) = \( \beta \ 2 \) = … = \( \beta \ k \) = 0 (no linear relationship) HA: at least one \( \beta \ i \) ≠ 0 (at least one independent variable affects y) F statistic = (SSR/k)/(SSE/(n-k-1))
+
+Since F = 14.9 is in the rejection region (it is greater than the F(critical) = 1.79), we reject the null hypothesis at alpha = 0.05, and accept the alternative hypothesis that at least one independent variable affects waittimes at 95% confidence. So we conclude that the regression model does explain a significant portion of the variation in waittimes. This conclusion is also confirmed by the F-statistic with a p-value: < 2.2e-16, and therefore it is less than the alpha value of 0.05, and we can also conclude from this p-value that the model does explain a significant portion of the variation in waittimes.
+Here is the prediction model:
+waittimes = 74.8 + 166.58(Dental) + 44(General Surgery) + 35.08(Obstetrics/Gynaecology) + 122.41(Opthalmology) + 192.29(Oral Maxillofacial) + 331.09(Orthopaedic) + 170.04(Otolaryngology (ENT)) + 102.60(Plastic Surgery) + 62.53(Thoracic Surgery) + 84.47(Urology) + 86.70(Vascular Surgery)
+
+Cardiac Surgery is the default, where all the other specialty variables are 0.
+The model predicts the following for average wait times by specialty:
+
+Although we can give an estimate of average wait times in Nova Scotia based on specialty from the model, only the waittimes from the following specialties are statistically significant: Dental, Opthalmology, Oral Maxillofacial, Orthopaedic, Otolaryngology (ENT), and Plastic Surgery at 95% confidence. However, Cardiac Surgery (p = 0.06) and Urology (p = 0.08) are almost at 0.05, so the wait times for these specialties are close to being statistically significant.
+

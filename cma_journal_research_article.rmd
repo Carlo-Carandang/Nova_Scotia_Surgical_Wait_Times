@@ -1,0 +1,60 @@
+---
+title: "Analysis of Surgical Wait Times in Nova Scotia"
+author: "Carlo Carandang, William Wells, Janti Aye"
+classoption: letterpaper, twoside, twocolumn
+output:
+  html_document:
+    df_print: paged
+  pdf_document:
+    keep_tex: yes
+    latex_engine: xelatex
+  word_document: default
+documentclass: article
+geometry: margin=1.75cm
+header-includes:
+- \AtBeginShipout{\ifnum\value{page}=1\AtBeginShipoutDiscard\fi}
+- \usepackage{multicol}
+- \setlength{\parindent}{1em}
+- \setlength{\parskip}{0em}
+- \usepackage{mdframed}
+csl: bibliography/vancouver-superscript.csl
+bibliography: bibliography/bibliographic_references.bib
+---
+
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(fig.path = 'figures/',
+                      echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+\pagenumbering{gobble}
+
+\twocolumn[
+  \begin{@twocolumnfalse}
+    \maketitle
+    \begin{mdframed}
+      \begin{multicols}{3}
+```{r child = 'abstract.rmd'}
+```
+      \end{multicols}
+    \end{mdframed}
+  \end{@twocolumnfalse}
+]
+
+```{r child = 'background/background.rmd'}
+```
+
+```{r child = 'methods/methods.rmd'}
+```
+
+```{r child = 'results/results.rmd'}
+```
+
+```{r child = 'interpretation/interpretation.rmd'}
+```
+
+```{r child = 'conclusion/conclusion.rmd'}
+```
+
+```{r child = 'references.rmd'}
+```

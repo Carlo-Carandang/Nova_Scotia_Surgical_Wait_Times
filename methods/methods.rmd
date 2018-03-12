@@ -1,0 +1,50 @@
+# Methods
+
+As a team, we divided the work into the following tasks:\newline
+
+* Project topic selection (C.C., W.W., J.A.)
+* Dataset selection (C.C., W.W., J.A.)
+* Data cleaning (C.C.)
+* Exploratory analysis and multiple linear regression in R (W.W.)
+* Multiple linear regression and polynomial regression in Python (C.C.)
+* Visualization of data and graphs (J.A.)
+* Research, report writing, and editing (C.C., W.W., J.A.)\newline
+
+We initially had to clean the data, as there were a lot of missing values. We did this manually, as the column and rows were populated haphazardly, and we therefore had to inspect and note the missing values, row by row (12 columns and about 7000 rows). We then applied business and clinical rules to fill in missing values, utilizing the clinical domain expertise of one of the authors (C.C.) who practiced as a physician in Nova Scotia. As an example of missing values, we had to classify each of the surgical procedures into the surgical specialty to which it belongs, and many of the rows were missing this information. In addition, there were missing values for hospital, Health Region Zone, procedure performed by surgeon, and specialty of the surgeon. Any missing values not obtainable within the dataset were scraped from the internet to populate the missing values, such as hospital information and information on the surgeon.
+
+Once the dataset was cleaned and missing values were replaced with inferred values from domain expertise and/or web scraping, we performed exploratory statistical analysis on the surgical wait times in Nova Scotia. We are trying to determine if there are any correlations between the numerous independent variables (i.e. specialty, period, facility, etc.) and the dependent variable (surgical wait times). This exploratory analysis is the beginning of an ongoing, in-depth analysis of the Nova Scotia Surgical Wait Times, to help to improve patient care through data analysis and statistical modelling.
+
+R and Python to perform exploratory, descriptive, and predictive statistical analysis on the surgical wait times dataset in Nova Scotia, for the time period 2014 to 2016.
+
+## Analytical Environment
+
+### Software
+
+Data analyses, visualizations, and production of this report were undertaken using software with the specifications detailed below. \newline
+
+* Anaconda v0.0.0
+* Jupyter Notebook v0.0.0
+* pdfTeX (TeXlive 2015) v3.14159265-2.6-1.40.16
+* Pandoc v1.16.0.2
+* R v3.4.4
+* R Studio v1.1.383
+* R Markdown v2
+
+### Hardware
+
+Data analyses, visualizations, and production of this report were undertaken using hardware with the specifications detailed below. \newline
+
+__Apple MacBook Air__
+Processor: 1.6 GHz Intel Core i5;
+Number of Processors: 1;
+Total Number of Cores: 2;
+L2 Cache (per Core): 256 KB;
+L3 Cache: 3 MB;
+Memory: 8 GB 1600 MHz DDR3;
+Operating System: Apple Mac OS X v10.0
+
+__Apple Macbook Pro__
+Processor: 3.1 GHz Intel Core i7; Number of Processors: 1; Total Number of Cores: 2; L2 Cache (per Core): 256 KB; L3 Cache: 3 MB; Memory: 16 GB 1857 MHz DDR3; Graphics: Intel Iris Graphics 6100 1536 MB; Operating System: Apple Mac OS X v10.13
+
+__Hewlett Packard Spectre 13__
+Processor: 2.5GHz Intel Core i7; Number of Processors: 1; Total Number of Cores: 4; Memory: 8 GB DDR3; Graphics: Intel HD Graphics 520; Operating System: Xubuntu Linux v16.04 LTS
