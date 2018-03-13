@@ -1,6 +1,6 @@
 ---
 title: "Analysis of Surgical Wait Times in Nova Scotia"
-author: "Carlo Carandang, William Wells, Janti Aye"
+author: "Carlo Carandang, Gregory Horne, William Wells, Catherine Stokes"
 classoption: letterpaper, twoside, twocolumn
 output:
   html_document:

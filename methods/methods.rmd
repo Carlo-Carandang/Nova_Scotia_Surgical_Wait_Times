@@ -1,20 +1,20 @@
 # Methods
 
-As a team, we divided the work into the following tasks:\newline
+The research team divided the work into the following tasks:\newline
 
-* Project topic selection (C.C., W.W., J.A.)
-* Dataset selection (C.C., W.W., J.A.)
-* Data cleaning (C.C.)
-* Exploratory analysis and multiple linear regression in R (W.W.)
-* Multiple linear regression and polynomial regression in Python (C.C.)
-* Visualization of data and graphs (J.A.)
-* Research, report writing, and editing (C.C., W.W., J.A.)\newline
+* Project topic selection (C.C., G.H., W.W., C.S.)
+* Dataset selection (C.C., W.W.)
+* Data cleaning (C.C., G.H.)
+* Exploratory analysis and multiple linear regression in R (G.H., W.W.)
+* Multiple linear regression and polynomial regression in Python (C.C. and G.H.)
+* Visualization of data and graphs (G.H.)
+* Research, report writing, and editing (C.C., G.H., W.W., C.S.)\newline
 
-We initially had to clean the data, as there were a lot of missing values. We did this manually, as the column and rows were populated haphazardly, and we therefore had to inspect and note the missing values, row by row (12 columns and about 7000 rows). We then applied business and clinical rules to fill in missing values, utilizing the clinical domain expertise of one of the authors (C.C.) who practiced as a physician in Nova Scotia. As an example of missing values, we had to classify each of the surgical procedures into the surgical specialty to which it belongs, and many of the rows were missing this information. In addition, there were missing values for hospital, Health Region Zone, procedure performed by surgeon, and specialty of the surgeon. Any missing values not obtainable within the dataset were scraped from the internet to populate the missing values, such as hospital information and information on the surgeon.
+Initially, the data had to be cleaned, as there were many missing values. This was performed manually, as the column and rows were populated haphazardly, and therefore had to inspect and note the missing values, row by row (12 columns and about 7000 rows). Subsequently, business and clinical rules were followed to fill in missing values, utilizing the clinical domain expertise of one of the authors (C.C.) who had practiced as a physician in Nova Scotia for several years. As an example of missing values, each of the surgical procedures had to be classified into the surgical specialty to which it belonged, as many of the rows were missing this information. In addition, there were missing values for hospital, Health Region Zone, procedure performed by surgeon, and specialty of the surgeon. Any missing values not obtainable within the dataset were scraped from the internet to populate the missing values, such as hospital information and information on the surgeon.
 
-Once the dataset was cleaned and missing values were replaced with inferred values from domain expertise and/or web scraping, we performed exploratory statistical analysis on the surgical wait times in Nova Scotia. We are trying to determine if there are any correlations between the numerous independent variables (i.e. specialty, period, facility, etc.) and the dependent variable (surgical wait times). This exploratory analysis is the beginning of an ongoing, in-depth analysis of the Nova Scotia Surgical Wait Times, to help to improve patient care through data analysis and statistical modelling.
+Once the dataset was cleaned and missing values were replaced with inferred values from domain expertise and/or web scraping, exploratory statistical analysis was performed on the surgical wait times dataset in Nova Scotia. The research team was trying to determine if there were any correlations between the numerous independent variables (i.e. specialty, period, facility, etc.) and the dependent variable (surgical wait times). This exploratory analysis was the beginning of an ongoing, in-depth analysis of the Nova Scotia Surgical Wait Times, to help to improve patient care through data analysis and statistical modelling.
 
-R and Python to perform exploratory, descriptive, and predictive statistical analysis on the surgical wait times dataset in Nova Scotia, for the time period 2014 to 2016.
+R and Python were utilized to perform exploratory, descriptive, and predictive statistical analysis on the surgical wait times dataset in Nova Scotia, for the time period 2014 to 2016.
 
 ## Analytical Environment
 
