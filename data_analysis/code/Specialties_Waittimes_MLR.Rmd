@@ -1,6 +1,6 @@
 ---
 title: "Results"
-author: "Carlo Carandang, William Wells, and Janti Aye"
+author: "Carlo Carandang, Gregory Horne, William Wells, and Catherine Stokes"
 date: '2017-12-10'
 output:
   word_document: default
@@ -12,7 +12,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 Importing the dataset
 ```{r}
-Surgical_Wait_Times_2017_09_04 <- read.csv("Surgical_Wait_Times_2017-09-04.csv", sep="\t", header = T)
+setwd("~/Desktop/Nova_Scotia_Surgical_Wait_Times")
+Surgical_Wait_Times_2017_09_04 <- read.csv("data_analysis/data/Surgical_Wait_Times_2017-09-04.csv", sep="\t", header = T)
 ```
 What does the dataset look like?
 ```{r}
@@ -32,30 +33,19 @@ Correlation Analysis
 ```{r}
 pairs(Surgical_Wait_Times_2017_09_04)
 ```
-Set independent variables - Isolate only rows with 'All' Procedures - columns 2,3
+Isolate only rows with 'All' Procedures - columns 2,3
 ```{r}
-specialty <- Surgical_Wait_Times_2017_09_04[Surgical_Wait_Times_2017_09_04$Procedure=="All",2:3]
+specialty <- Surgical_Wait_Times_2017_09_04[Surgical_Wait_Times_2017_09_04$Procedure=="All",2:12]
 specialty
 ```
-Set dependent variable
-```{r}
-specialty90 <- Surgical_Wait_Times_2017_09_04[Surgical_Wait_Times_2017_09_04$Procedure=="All",c(3,12)]
-specialty90
-```
-Change shape of X from 1D to 2D
+Set independent variables:
 ```{r}
 X <- specialty[,1]
-```
-Print X
-```{r}
 X
 ```
-Change shape of Y from 1D to 2D
+Set dependent variable:
 ```{r}
-Y <- specialty90[,2]
-```
-Print Y
-```{r}
+Y <- specialty[,11]
 Y
 ```
 Linear Regression
@@ -101,7 +91,7 @@ Since F = 14.9 is in the rejection region (it is greater than the F(critical) = 
 
 Here is the prediction model:
 
-waittimes = 74.8 + 166.58(Dental) + 44(General Surgery) + 35.08(Obstetrics/Gynaecology) + 122.41(Opthalmology) + 192.29(Oral Maxillofacial) + 331.09(Orthopaedic) + 170.04(Otolaryngology (ENT)) + 102.60(Plastic Surgery) + 62.53(Thoracic Surgery) + 84.47(Urology) + 86.70(Vascular Surgery)
+waittimes = 74.8 + 166.58(Dental) + 44(General Surgery) + 41.10(Neurosurgery) 35.08(Obstetrics/Gynaecology) + 122.41(Opthalmology) + 192.29(Oral Maxillofacial) + 331.09(Orthopaedic) + 170.04(Otolaryngology (ENT)) + 102.60(Plastic Surgery) + 62.53(Thoracic Surgery) + 84.47(Urology) + 86.70(Vascular Surgery)
 
 Cardiac Surgery is the default, where all the other specialty variables are 0.
 
@@ -154,4 +144,39 @@ print("The average Urology wait time in Nova Scotia is:")
 print("The average Vascular Surgery wait time in Nova Scotia is:")
 74.80 + 86.70
 ```
-Although we can give an estimate of average wait times in Nova Scotia based on specialty from the model, only the waittimes from the following specialties are statistically significant: Dental, Opthalmology, Oral Maxillofacial, Orthopaedic, Otolaryngology (ENT), and Plastic Surgery at 95% confidence. However, Cardiac Surgery (p = 0.06) and Urology (p = 0.08) are almost at 0.05, so the wait times for these specialties are close to being statistically significant. 
+Although we can give an estimate of average wait times in Nova Scotia based on specialty from the model, only the waittimes from the following specialties are statistically significant: Dental, Opthalmology, Oral Maxillofacial, Orthopaedic, Otolaryngology (ENT), and Plastic Surgery at 95% confidence. However, Cardiac Surgery (p = 0.06) and Urology (p = 0.08) are almost at 0.05, so the wait times for these specialties are close to being statistically significant.
+
+However, the above only has part of the wait times...the total wait includes consult wait time and surgical wait time, so we have to also add the consult wait times.
+
+Consult Wait Times:
+
+Isolate only rows with 'All' Procedures - columns 2:10, and remove NA values from Consult_90th column
+```{r}
+specialty1 <- Surgical_Wait_Times_2017_09_04[Surgical_Wait_Times_2017_09_04$Procedure=="All",2:10]
+specialty1
+specialty1 <- specialty1[!is.na(specialty1$Consult_90th),]
+specialty1
+```
+Set independent variables
+```{r}
+X <- specialty1[,1]
+X
+```
+Set dependent variable
+```{r}
+Y <- specialty1[,9]
+Y
+```
+Linear Regression
+```{r}
+model <- data.frame(X,Y)
+mod.specialty <- lm(formula = Y ~ X, data = model)
+summary(mod.specialty)
+```
+Since p-value for the model is 0.008204, we reject the null hypothesis at alpha = 0.05, and accept the alternative hypothesis that at least one independent variable affects waittimes at 95% confidence.
+
+Here is the prediction model:
+
+total waittimes = (58.20 + 74.8) + (145.11 + 166.58)(Dental) + (80.71 + 44)(General Surgery) + (134 + 41.10)(Neurosurgery) + (64.09 + 35.08)(Obstetrics/Gynaecology) + (253.04 + 122.41)(Opthalmology) + (68.53 + 192.29)(Oral Maxillofacial) + (234.30 + 331.09)(Orthopaedic) + (173.36 + 170.04)(Otolaryngology (ENT)) + (137.60 + 102.60)(Plastic Surgery) + (22.30 + 62.53)(Thoracic Surgery) + (55.35 + 84.47)(Urology) + (138.80 + 86.70)(Vascular Surgery)
+
+Cardiac Surgery is the default, where all the other specialty variables are 0.
