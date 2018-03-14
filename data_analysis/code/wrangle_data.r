@@ -1,7 +1,9 @@
 ## ---- wrangling ----
 
 library(dplyr, quietly = TRUE, warn.conflicts = FALSE)
+library(stringr)
 library(tibble)
+library(e1071)
 library(magrittr)
 
 ## ---- column-names ----
