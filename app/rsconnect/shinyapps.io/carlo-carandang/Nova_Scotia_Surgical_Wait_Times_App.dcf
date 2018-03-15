@@ -1,0 +1,12 @@
+name: Nova_Scotia_Surgical_Wait_Times_App
+title: Nova_Scotia_Surgical_Wait_Times_App
+username:
+account: carlo-carandang
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 299829
+bundleId: 1269633
+url: https://carlo-carandang.shinyapps.io/Nova_Scotia_Surgical_Wait_Times_App/
+when: 1521096748.97573
+asMultiple: FALSE
+asStatic: FALSE
