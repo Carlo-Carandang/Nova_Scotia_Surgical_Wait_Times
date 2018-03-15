@@ -193,6 +193,60 @@ $(document).ready(function () {
 <pre><code>## The following object is masked from 'package:magrittr':
 ## 
 ##     set_names</code></pre>
+<pre><code>
+Call:
+lm(formula = specialty90 ~ specialty)
+
+Coefficients:
+                    (Intercept)         specialtyCardiac Surgery  
+                         257.71                          -117.31  
+                specialtyDental            specialtyNeurosurgery  
+                         180.16                            50.39  
+specialtyObstetrics/Gynaecology           specialtyOphthalmology  
+                         -24.23                           250.74  
+    specialtyOral Maxillofacial             specialtyOrthopaedic  
+                         136.10                           440.68  
+  specialtyOtolaryngology (ENT)         specialtyPlastic Surgery  
+                         218.69                           115.49  
+      specialtyThoracic Surgery                 specialtyUrology  
+                         -39.88                            15.10  
+      specialtyVascular Surgery  
+                         100.79  </code></pre>
+<pre><code>
+Call:
+lm(formula = specialty90 ~ specialty)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-536.39 -144.57  -66.16   70.76 2366.55 
+
+Coefficients:
+                                Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)                       257.71      38.80   6.643 1.68e-10 ***
+specialtyCardiac Surgery         -117.31     135.51  -0.866 0.387417    
+specialtyDental                   180.16      82.30   2.189 0.029447 *  
+specialtyNeurosurgery              50.39      99.67   0.506 0.613607    
+specialtyObstetrics/Gynaecology   -24.23      59.68  -0.406 0.685083    
+specialtyOphthalmology            250.74      63.71   3.935 0.000106 ***
+specialtyOral Maxillofacial       136.10      95.75   1.421 0.156338    
+specialtyOrthopaedic              440.68      61.02   7.222 5.19e-12 ***
+specialtyOtolaryngology (ENT)     218.69      69.83   3.131 0.001930 ** 
+specialtyPlastic Surgery          115.49      84.41   1.368 0.172388    
+specialtyThoracic Surgery         -39.88     124.72  -0.320 0.749385    
+specialtyUrology                   15.10      73.05   0.207 0.836358    
+specialtyVascular Surgery         100.79     124.72   0.808 0.419727    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 290.3 on 271 degrees of freedom
+Multiple R-squared:  0.2383,    Adjusted R-squared:  0.2046 
+F-statistic: 7.066 on 12 and 271 DF,  p-value: 3.522e-11</code></pre>
+<pre><code>  r.squared adj.r.squared    sigma statistic      p.value df    logLik
+1 0.2383158     0.2045881 290.3315  7.065874 3.522272e-11 13 -2006.896
+       AIC      BIC deviance df.residual
+1 4041.791 4092.877 22843240         271</code></pre>
+<pre><code>[1] &quot;NULL Hypothesis:&quot;</code></pre>
+<pre><code>[1] &quot;reject&quot;</code></pre>
 <pre><code>                    (Intercept)        specialtyCardiac Surgery 
                       257.71429                      -117.31429 
                 specialtyDental           specialtyNeurosurgery 
@@ -235,9 +289,24 @@ specialtyObstetrics/Gynaecology          specialtyOphthalmology
  Thoracic Surgery        -39.88095
  Urology                  15.10390
  Vascular Surgery        100.78571</code></pre>
-<pre><code>## [1] 12</code></pre>
-<pre><code>## [1] 22843240</code></pre>
-<pre><code>## NULL</code></pre>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: specialty90
+##            Df   Sum Sq Mean Sq F value    Pr(&gt;F)    
+## specialty  12  7147193  595599  7.0659 3.522e-11 ***
+## Residuals 271 22843240   84292                      
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+<pre><code>## [1] &quot;Df&quot;      &quot;Sum Sq&quot;  &quot;Mean Sq&quot; &quot;F value&quot; &quot;Pr(&gt;F)&quot;</code></pre>
+<pre><code>## [1] &quot;df&quot;     &quot;sumsq&quot;  &quot;meansq&quot; &quot;fvalue&quot; &quot;pr(&gt;f)&quot;</code></pre>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: specialty90
+##            df    sumsq meansq fvalue     pr(&gt;f)
+## specialty  12  7147193 595599 7.0659 3.5223e-11
+## Residuals 271 22843240  84292</code></pre>
+<pre><code>## [1] &quot;ANOVA of the linear regression model; NULL Hypothesis:&quot;</code></pre>
+<pre><code>## [1] &quot;reject&quot;</code></pre>
 </div>
 
 

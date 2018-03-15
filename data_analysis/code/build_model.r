@@ -46,6 +46,8 @@ rse <- statistics %>% select(sigma)
 f <- statistics %>% select(statistic)
 f_critical <- qf(0.95, k, n - k - 1)
 null_hypothesis_status <- if (f_critical < f) 'reject' else 'accept'
+print("NULL Hypothesis:")
+null_hypothesis_status
 
 ## ---- prediction-model ----
 model_coefficient <- coef(model)
@@ -68,10 +70,28 @@ model_coefficient %>% print.data.frame(right = FALSE, row.names = FALSE)
 
 ## ---- anova ----
 
-anova(model)
+av <- anova(model)
+av
+av %>% names()
+names(av) <- gsub("\\s","", av %>% names() %>% tolower())
+av %>% names()
+av
+
+n <- av %>% select(df) %>% sum() + 1
+k <- av %>% select(df) %>% top_n(-1, df) %>% first()
+psumsq <- av %>% select(sumsq) %>% top_n(-1, sumsq) %>% first()
+rsumsq <- av %>% select(sumsq) %>% top_n(1, sumsq) %>% first()
+se <- sqrt(rsumsq / (n - k - 1))
+rsq <- psumsq / (rsumsq + psumsq) %>% first()
+
+f_statistic <- av %>% select(fvalue) %>%top_n(1, fvalue) %>% first()
+f_critical <- qf(0.95, k, n - k - 1)
+null_hypothesis_status <- if (f_critical < f_statistic) 'reject' else 'accept'
+print("ANOVA of the linear regression model; NULL Hypothesis:")
+null_hypothesis_status
 
 ## ---- anova-coefficients ----
 
-anova(model)[[1]][1]
-anova(model)[[2]][2]
-nrow(df)
+#anova(model)[[1]][1]
+#anova(model)[[2]][2]
+#nrow(df)
