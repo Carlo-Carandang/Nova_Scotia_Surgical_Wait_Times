@@ -8,8 +8,11 @@ ui <- fluidPage(
                 choices = c("General Surgery", "Cardiac Surgery", "Dental","Neurosurgery", "Obstetrics/Gynaecology", "Ophthalmology", "Oral Maxillofacial", "Orthopaedic", "Otolaryngology (ENT)", "Plastic Surgery", "Thoracic Surgery", "Urology", "Vascular Surgery"))
                 ),
   mainPanel(
-    ("Estimated Total Wait Time (days)"),
-    textOutput("myTime")
+    h5("Estimated Total Wait Time (days)"),
+    h5(textOutput("myTime")),
+    h5("Code Repository:", a("https://github.com/Carlo-Carandang/Nova_Scotia_Surgical_Wait_Times", href="https://github.com/Carlo-Carandang/Nova_Scotia_Surgical_Wait_Times")),
+    h5("Data Analysis:", a("http://rpubs.com/gdhorne/350850", href="http://rpubs.com/gdhorne/350850")),
+    h5("Data Visualization:", a("http://rpubs.com/gdhorne/347392", href="http://rpubs.com/gdhorne/347392"))
   )
 )
 
