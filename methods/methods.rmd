@@ -16,6 +16,83 @@ Once the dataset was cleaned and missing values were replaced with inferred valu
 
 R and Python were utilized to perform exploratory, descriptive, and predictive statistical analysis on the surgical wait times dataset in Nova Scotia, for the time period 2014 to 2016.
 
+### Acquire the Surgical Wait Times Data
+The surgical wait times data was obtained from the Nova Scotia Government [Open Data Portal.](https://data.novascotia.ca/) Here are the steps to acquire the dataset:
+
+1) Navigate to the Open Data Portal
+2) Select the Data Catalogue
+3) Search ‘surgical wait times’
+4) Select Surgical Wait Times
+5) Select the Export option
+6) Select CSV
+7) Save the data file to the project subdirectory (nova_scotia_wait_times/data_analysis/data).
+8) Load the data from a tab-separated-values formatted file with column headers
+
+### Wrangle the Data
+
+Once the data was loaded, the feature names of the data set were determined.
+
+[1] Period         Specialty      Procedure      Provider      
+[5] Zone           Facility       Year           Quarter       
+[9] Consult_Median Consult_90th   Surgery_Median Surgery_90th
+
+The dataset contained 6843 observations and 12 features.
+
+The surgical specialty types were parsed as follows: specialty, all specialties, cardiac, dental, general, neurosurgery, obstetrics/gynaecology, ophthalmology, oral and maxillofacial, oral maxillofacial, orthopaedic, otolaryngology (ent), plastic, thoracic, urology, vascular. In total, there are 15 surgical specialty types and 159 surgical procedure types.
+
+After exploring the dataset for features to study, only observations with surgical procedure type ‘all’ were extracted.
+
+ feature       | missing_count| nonmissing_count
+ ------------- | ------------ | ----------------
+ consult_90th  | 12           |  284             
+ consult_median| 12           |  284             
+ facility      | 296          |  0             
+ period        | 0            |  296             
+ procedure     | 0            |  296             
+ provider      | 0            |  296             
+ quarter       | 296          |  0             
+ specialty     | 0            |  296             
+ surgery_90th  | 0            |  296             
+ surgery_median| 0            |  296             
+ year          | 296          |  0             
+ zone          | 296          |  0  
+ 
+The minimum, maximum, average, standard deviation, and total combined wait days by consultation and surgery specialty. Average wait days is the median number of days on the surgical wait list:
+
+ specialty             |  minimum| maximum| average| sigma| total | observations
+ --------------------- | ------- | ------ | ------ | ---- | ----- | ------------
+ cardiac               | 66      | 198    | 157    | 49   | 702   | 5          
+ dental                | 148     | 1032   | 327    | 319  | 7006  | 16          
+ general               | 65      | 2234   | 177    | 298  | 14432 | 56          
+ neurosurgery          | 155     | 949    | 252    | 236  | 3081  | 10          
+ obstetrics/gynaecology| 64      | 882    | 199    | 149  | 9573  | 41          
+ ophthalmology         | 115     | 2875   | 392    | 497  | 16779 | 33          
+ oral maxillofacial    | 171     | 620    | 421    | 159  | 4332  | 11          
+ orthopaedic           | 162     | 1365   | 662    | 318  | 26539 | 38          
+ otolaryngology (ent)  | 136     | 1081   | 390    | 258  | 11910 | 25          
+ plastic               | 151     | 738    | 372    | 186  | 5598  | 15          
+ thoracic              | 73      | 449    | 179    | 134  | 1307  | 6          
+ urology               | 61      | 819    | 219    | 170  | 6002  | 22          
+ vascular              | 112     | 685    | 307    | 242  | 2151  | 6 
+ 
+Rows with missing values were removed before training the prediction model.
+
+### Visualise the Data
+
+After wrangling the data, the data was visualized:
+![](figures/newplot-1.png)
+\newline
+![](figures/newplot-2.png)
+\newline
+![](figures/newplot-3.png)
+\newline
+![](figures/newplot-4.png)
+\newline
+![](figures/newplot-5.png)
+\newline
+![](figures/newplot-6.png)
+\newline
+
 ## Analytical Environment
 
 ### Software
