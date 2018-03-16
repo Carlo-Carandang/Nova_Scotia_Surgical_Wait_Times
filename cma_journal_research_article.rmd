@@ -27,19 +27,22 @@ knitr::opts_chunk$set(fig.path = 'figures/',
                       echo = FALSE, warning = FALSE, message = FALSE)
 ```
 
-\pagenumbering{gobble}
-
-\twocolumn[
-  \begin{@twocolumnfalse}
-    \maketitle
-    \begin{mdframed}
-      \begin{multicols}{3}
 ```{r child = 'abstract.rmd'}
 ```
-      \end{multicols}
-    \end{mdframed}
-  \end{@twocolumnfalse}
-]
+
+#\pagenumbering{gobble}
+
+#\twocolumn[
+#  \begin{@twocolumnfalse}
+#    \maketitle
+#    \begin{mdframed}
+#      \begin{multicols}{3}
+#```{r child = 'abstract.rmd'}
+#```
+#      \end{multicols}
+#    \end{mdframed}
+#  \end{@twocolumnfalse}
+#]
 
 ```{r child = 'background/background.rmd'}
 ```
