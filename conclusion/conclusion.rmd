@@ -18,7 +18,7 @@ We also want to correlate the wait times with actual data regarding morbidity an
 
 Stay tuned for further developments of this project, aimed at improving the healthcare of Nova Scotians who are forced on these surgical wait lists.
 
-*This project was supported by Saint Mary’s University, MSc Program in Computing & Data Analytics.*  
+*This project was supported by Saint Mary’s University, MSc Program in Computing & Data Analytics and NSCC Institute of Technology*  
 
 The statistical analysis and code for this study is located at this repository: https://github.com/Carlo-Carandang/Nova_Scotia_Surgical_Wait_Times  
 
