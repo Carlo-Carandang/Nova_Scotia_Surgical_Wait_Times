@@ -2,22 +2,24 @@
 
 In this project, we started with the analysis for specialty vs wait times, as the exploratory analysis gave us an initial signal that specialty may be correlated with wait times, as the scatterplots of the various combinations of the variables showed that the specialties showed a ‘banded’ pattern when it was paired and plotted versus wait times, and some specialties appeared to have greater variation in wait times than others. The ‘banded’ pattern occurred due to the specialty variable being categorical (discrete datapoints).
 
-We used multiple linear regression for specialty vs. wait times, and found that our model explained 36% of the variation in the dependent variable (wait times). Although we can give an estimate of average wait times in Nova Scotia based on specialty from the model, only the wait times from the following specialties are statistically significant: Dental, Opthalmology, Oral Maxillofacial, Orthopaedic, Otolaryngology (ENT), and Plastic Surgery at 95% confidence. However, Cardiac Surgery (p = 0.06) and Urology (p = 0.08) are almost at 0.05, so the wait times for these specialties are close to being statistically significant.
+We used multiple linear regression for specialty vs. wait times, and found that our model explained 20% of the variation in the dependent variable (wait times). Although we can give an estimate of average wait times in Nova Scotia based on specialty from the model, only the wait times from the following specialties are statistically significant: General Surgery, Dental, Opthalmology, Orthopaedic, and Otolaryngology (ENT) at 95% confidence. However, as the model is statistically significant with all the coefficients, then it can be assumed that the model can predict with 95% confidence the wait times from any specialty, even if the individual coefficient is not statistically significant.
 
-Nonetheless, our model for specialty vs. wait times was statistically significant, as indicated by our F-statistic with a p < 0.05. This F-statistic analysis was performed with all of the specialties included in the model, without backward elimination. Hence, the following prediction model is useful for predicting wait times in Nova Scotia, trained from data in the years 2014 to 2016:
+In summary, our model for specialty vs. total wait times (consult plus surgery wait times) was statistically significant, as indicated by our F-statistic with a p < 0.05. This F-statistic analysis was performed with all of the specialties included in the model, without backward elimination. Hence, the following prediction model is useful for predicting wait times in Nova Scotia, trained from data in the years 2014 to 2016:
 
-waittimes = 74.8 + 166.58(Dental) + 44(General Surgery) + 35.08(Obstetrics/Gynaecology) + 122.41(Opthalmology) + 192.29(Oral Maxillofacial) + 331.09(Orthopaedic) + 170.04(Otolaryngology (ENT)) + 102.60(Plastic Surgery) + 62.53(Thoracic Surgery) + 84.47(Urology) + 86.70(Vascular Surgery)
+#### waittimes = 257.71 - 117.31(Cardiac Surgery) + 180.16(Dental) + 50.39(Neurosurgery) - 24.23(Obstetrics/Gynaecology) + 250.74(Opthalmology) + 136.10(Oral Maxillofacial) + 440.68(Orthopaedic) + 218.69(Otolaryngology (ENT)) + 115.49(Plastic Surgery) - 39.88(Thoracic Surgery) + 15.10(Urology) + 100.79(Vascular Surgery)
 
-(Note: the default is Cardiac Surgery, where all the other specialty variables = 0)
-
-In our secondary analyses (see Appendix), we performed multiple linear regression with backwards elimination, and this confirmed our initial results above, where we found the same specialties were statistically significant for predicting wait times. Furthermore, when looking at other variable pairs, we observed that period vs. wait times gave a banded pattern, like the one for specialty vs. wait times. However, what was different was that the banded patterns in the period vs. wait times were about equal length, and hence about equal variance (see Results section above). This was confirmed in the analysis, where multiple linear regression revealed no correlation between period and wait times, as evidenced by the Coefficient of Determination (R2) being close to zero (see Appendix).
+(Note: the default is General Surgery, where all the other specialty variables = 0)
 
 ## Future Direction
 
-We will continue to explore for any correlations between wait times and the other variables in this surgical wait times dataset, such as Procedure, Provider, Zone, Facility, Year, Quarter. We plan on continuing the modeling in linear regression and polynomial regression (if indicated). 
+We will continue to explore for any correlations between wait times and the other variables in this surgical wait times dataset, such as Procedure, Provider, Zone, Facility, Period, Year, and Quarter. We plan on continuing the modeling in linear regression and polynomial regression (if indicated). 
 
 We also want to correlate the wait times with actual data regarding morbidity and mortality rates (probability of worsening illness and dying on the waitlist). We need to collect those datapoints regarding actual morbidity and mortality, so that we can make predictions about a patient’s morbidity and mortality risks when they are placed on a wait-list for a surgical procedure, based on the statistical modeling techniques that we performed here.
 
 Stay tuned for further developments of this project, aimed at improving the healthcare of Nova Scotians who are forced on these surgical wait lists.
 
-*This project was supported by Saint Mary’s University, MSc Program in Computing & Data Analytics.*
+*This project was supported by Saint Mary’s University, MSc Program in Computing & Data Analytics.*  
+
+The statistical analysis and code for this study is located at this repository: https://github.com/Carlo-Carandang/Nova_Scotia_Surgical_Wait_Times  
+
+The corresponding author (C.C.) can be contacted at carandangc@gmail.com.
