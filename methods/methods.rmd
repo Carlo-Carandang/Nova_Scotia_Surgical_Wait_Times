@@ -1,5 +1,7 @@
 # Methods
 
+This study involved obtaining a clinical dataset from an open data portal on the internet, loading the data into our analytical environment, exploring the data using analytical software, cleaning the data, determining feature variables (independent variables), and utilizing the data to train models for prediction of the outcome variable(s).
+
 The research team divided the work into the following tasks:\newline
 
 * Project topic selection (C.C., G.H., W.W., C.S.)
@@ -16,7 +18,40 @@ Once the dataset was cleaned and missing values were replaced with inferred valu
 
 R and Python were utilized to perform exploratory, descriptive, and predictive statistical analysis on the surgical wait times dataset in Nova Scotia, for the time period 2014 to 2016.
 
-### Acquire the Surgical Wait Times Data
+## Analytical Environment
+
+### Software
+
+Data analyses, visualizations, and production of this report were undertaken using software with the specifications detailed below. \newline
+
+* Anaconda v0.0.0
+* Jupyter Notebook v0.0.0
+* pdfTeX (TeXlive 2015) v3.14159265-2.6-1.40.16
+* Pandoc v1.16.0.2
+* R v3.4.4
+* R Studio v1.1.383
+* R Markdown v2
+
+### Hardware
+
+Data analyses, visualizations, and production of this report were undertaken using hardware with the specifications detailed below: \newline
+
+__Apple MacBook Air__
+Processor: 1.6 GHz Intel Core i5;
+Number of Processors: 1;
+Total Number of Cores: 2;
+L2 Cache (per Core): 256 KB;
+L3 Cache: 3 MB;
+Memory: 8 GB 1600 MHz DDR3;
+Operating System: Apple Mac OS X v10.0
+
+__Apple Macbook Pro__
+Processor: 3.1 GHz Intel Core i7; Number of Processors: 1; Total Number of Cores: 2; L2 Cache (per Core): 256 KB; L3 Cache: 3 MB; Memory: 16 GB 1857 MHz DDR3; Graphics: Intel Iris Graphics 6100 1536 MB; Operating System: Apple Mac OS X v10.13
+
+__Hewlett Packard Spectre 13__
+Processor: 2.5GHz Intel Core i7; Number of Processors: 1; Total Number of Cores: 4; Memory: 8 GB DDR3; Graphics: Intel HD Graphics 520; Operating System: Xubuntu Linux v16.04 LTS
+
+## Acquire the Surgical Wait Times Data
 The surgical wait times data was obtained from the Nova Scotia Government [Open Data Portal.](https://data.novascotia.ca/) Here are the steps to acquire the dataset:
 
 1) Navigate to the Open Data Portal
@@ -28,19 +63,34 @@ The surgical wait times data was obtained from the Nova Scotia Government [Open 
 7) Save the data file to the project subdirectory (nova_scotia_wait_times/data_analysis/data).
 8) Load the data from a tab-separated-values formatted file with column headers
 
-### Wrangle the Data
+## Wrangle the Data
 
-Once the data was loaded, the feature names of the data set were determined.
+Once the data was loaded, the feature names of the data set were determined:
 
-[1] Period         Specialty      Procedure      Provider      
-[5] Zone           Facility       Year           Quarter       
-[9] Consult_Median Consult_90th   Surgery_Median Surgery_90th
+[1] Period        [2] Specialty       [3] Procedure       [4] Provider      
+[5] Zone          [6] Facility        [7] Year            [8] Quarter       
+[9] Consult_Median  [10] Consult_90th   [11] Surgery_Median [12] Surgery_90th
 
-The dataset contained 6843 observations and 12 features.
+The dataset contained 6843 observations and 12 features. Here are the definitions of the 12 features in the dataset:
+
+Feature         | Definition
+--------------- | -------------------------------------------------------------
+Period          | Time period
+Specialty       | Surgical specialty
+Procedure       | Surgical procedure
+Provider        | Surgeon
+Zone            | Healthcare Zone, 1 to 4
+Facility        | Hospital
+Year            | Year
+Quarter         | Quarter (3-months)
+Consult_Median  | Maximum time that 50% of patients recently waited for consult
+Consult_90th    | Maximum time that 90% of patients recently waited for consult
+Surgery_Median  | Maximum time that 50% of patients recently waited for surgery
+Surgery_90th    | Maximum time that 90% of patients recently waited for surgery
 
 The surgical specialty types were parsed as follows: specialty, all specialties, cardiac, dental, general, neurosurgery, obstetrics/gynaecology, ophthalmology, oral and maxillofacial, oral maxillofacial, orthopaedic, otolaryngology (ent), plastic, thoracic, urology, vascular. In total, there are 15 surgical specialty types and 159 surgical procedure types.
 
-After exploring the dataset for features to study, only observations with surgical procedure type ‘all’ were extracted.
+After exploring the dataset for features to study, only observations with surgical procedure type ‘all’ were extracted:
 
  feature       | missing_count| nonmissing_count
  ------------- | ------------ | ----------------
@@ -77,51 +127,52 @@ The minimum, maximum, average, standard deviation, and total combined wait days 
  
 Rows with missing values were removed before training the prediction model.
 
-### Visualise the Data
+## Visualise the Data
 
-After wrangling the data, the data was visualized:
+After wrangling the data, the data was visualized: 
+  
+  
+Figure 1.  
 ![](figures/newplot-1.png)
-\newline
+  
+  
+Figure 1 shows the total wait time in person years, grouped by surgical specialty. Cardiac surgery has the lowest value, while orthopaedic has the highest.  
+  
+  
+Figure 2.  
 ![](figures/newplot-2.png)
-\newline
+  
+  
+Figure 2 shows the median total wait time in days, grouped by surgical specialty. Cardiac surgery has the lowest value, while orthopaedic has the highest.  
+  
+  
+Figure 3.  
 ![](figures/newplot-3.png)
-\newline
+  
+  
+Figure 3 shows the wait time distribution in days, grouped by surgical specialty. Notice cardiac surgery and thoracic surgery at the lower end, and orthopaedic at the higher end.  
+  
+  
+Figure 4.  
 ![](figures/newplot-4.png)
-\newline
+  
+  
+Figure 4 shows the histogram of the frequencies of the wait times. Most people are waiting between 100 to 200 days for their surgical procedure.  
+  
+  
+Figure 5.  
 ![](figures/newplot-5.png)
-\newline
-![](figures/newplot-6.png)
-\newline
+  
+  
+Figure 5 shows the histogram of the frequencies of the wait times, grouped by consultation wait times and surgery wait times. Most people are waiting between 50 days and 200 days for a consulation, and between 50 to 250 days for a surgical procedure.  
+  
+It was determined from the dataset that the total wait time to receive a surgical procedure is the sum of the consultation wait time and the surgical wait time. The domain expert who had worked in the system (C.C.) for several years interpreted the total wait time for a surgical procedure as the sum of the following wait times:  
+* Wait time to see a family doctor, who will determine if a surgery consultation is needed (family doctor wait time)
+* Wait time to consult with a surgeon (consult wait time)
+* Wait time for the surgical procedure (surgery wait time)  
+  
+So the total wait time to receive a surgical procedure is as follows:  
+  
+#### Total Wait Time = Family Doctor Wait Time + Consult Wait Time + Surgery Wait Time  
 
-## Analytical Environment
-
-### Software
-
-Data analyses, visualizations, and production of this report were undertaken using software with the specifications detailed below. \newline
-
-* Anaconda v0.0.0
-* Jupyter Notebook v0.0.0
-* pdfTeX (TeXlive 2015) v3.14159265-2.6-1.40.16
-* Pandoc v1.16.0.2
-* R v3.4.4
-* R Studio v1.1.383
-* R Markdown v2
-
-### Hardware
-
-Data analyses, visualizations, and production of this report were undertaken using hardware with the specifications detailed below. \newline
-
-__Apple MacBook Air__
-Processor: 1.6 GHz Intel Core i5;
-Number of Processors: 1;
-Total Number of Cores: 2;
-L2 Cache (per Core): 256 KB;
-L3 Cache: 3 MB;
-Memory: 8 GB 1600 MHz DDR3;
-Operating System: Apple Mac OS X v10.0
-
-__Apple Macbook Pro__
-Processor: 3.1 GHz Intel Core i7; Number of Processors: 1; Total Number of Cores: 2; L2 Cache (per Core): 256 KB; L3 Cache: 3 MB; Memory: 16 GB 1857 MHz DDR3; Graphics: Intel Iris Graphics 6100 1536 MB; Operating System: Apple Mac OS X v10.13
-
-__Hewlett Packard Spectre 13__
-Processor: 2.5GHz Intel Core i7; Number of Processors: 1; Total Number of Cores: 4; Memory: 8 GB DDR3; Graphics: Intel HD Graphics 520; Operating System: Xubuntu Linux v16.04 LTS
+But this dataset is missing the Family Doctor Wait Time, so the estimated wait times for surgical procedures in this analysis is missing the Family Doctor Wait Time. Therefore, any estimated prediction of wait times from this study is an underestimate of the real wait time.

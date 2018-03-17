@@ -1,6 +1,6 @@
 ---
 title: "Analysis of Surgical Wait Times in Nova Scotia"
-author: "Carlo Carandang, Gregory Horne, William Wells, Catherine Stokes"
+author: Carlo Carandang^[Saint Mary's University, MSc Program in Computing & Data Analytics, Halifax, Nova Scotia, Canada], Gregory Horne^[NSCC, Institute of Technology Campus, Halifax, Nova Scotia, Canada], William Wells^1^, Catherine Stokes^2^
 classoption: letterpaper, twoside, twocolumn
 output:
   html_document:
@@ -29,20 +29,6 @@ knitr::opts_chunk$set(fig.path = 'figures/',
 
 ```{r child = 'abstract.rmd'}
 ```
-
-#\pagenumbering{gobble}
-
-#\twocolumn[
-#  \begin{@twocolumnfalse}
-#    \maketitle
-#    \begin{mdframed}
-#      \begin{multicols}{3}
-#```{r child = 'abstract.rmd'}
-#```
-#      \end{multicols}
-#    \end{mdframed}
-#  \end{@twocolumnfalse}
-#]
 
 ```{r child = 'background/background.rmd'}
 ```
