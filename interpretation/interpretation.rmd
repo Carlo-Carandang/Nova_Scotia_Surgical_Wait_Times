@@ -1,3 +1,28 @@
 # Interpretation
 
-Here is some text.
+The residual standard error (standard error of the estimate) is 290.33, where it is the standard deviation of the variation of observations around the regression line (it is the standard deviation of the regression model). So waitimes average can be estimated as +-2(290.33) = 580.66. As this value is large when compared to the average waittimes in the sample, then the variation of observed y values from the regression line is also large. For future research, we should look for other variables which can explain more of the variation in waittimes (ie. costs for procedures, facilities funding, staffing levels, etc.).
+Multiple Coefficient of Determination: SST = SSE + SSR
+
+R^2 is 0.2383, but we do have to utilize the adjusted R^2, as we have multiple independent variables. The adjusted R^2 is 0.2046, where 20.46% of the variation in waittimes is explained by the variation in specialty, taking into account the sample size and number of independent variables.
+
+Next, we want to determine if the model is significant. Hypothesis testing is set up as follows:  
+
+#### Hypotheses: H0: \( \beta \ 1 \) = \( \beta \ 2 \) = … = \( \beta \ k \) = 0 (no linear relationship)  
+#### HA: at least one \( \beta \ i \) ≠ 0 (at least one independent variable affects y)  
+#### F statistic = (SSR/k)/(SSE/(n-k-1))  
+
+Since F = 7.07 is in the rejection region (it is greater than the F(critical) = 1.76), we reject the null hypothesis at alpha = 0.05, and accept the alternative hypothesis that at least one independent variable affects total surgical wait times at 95% confidence. According to the model the H0 (null hypothesis) should be rejected in favour of HA (alternative hypothesis). We determine that the model is significant.
+
+In addition, we conclude that the regression model does explain a significant portion of the variation in waittimes. This conclusion is also confirmed by the F-statistic with a p-value = 3.522271910^{-11}, and therefore it is less than the alpha value of 0.05, and we can also conclude from this p-value that the model does explain a significant portion of the variation in waittimes.
+
+An analysis of variance (ANOVA) of the linear regression model was used to validate the model. For example, the degrees of freedom, sum of squares, and mean squared can easily be retrieved for both the speciality and residuals parameters, and the F-statistic for the specialty parameter. The values of the F-statistic (7.0658736) and F-critical (1.7880147) indicate the H0 (null hypothesis) should be rejected in favour of HA (alternative hypothesis).
+
+Next, we extract the coefficients so the linear regression model equation can be constructed. Here is the prediction model:
+
+#### waittimes = 257.71 - 117.31(Cardiac Surgery) + 180.16(Dental) + 50.39(Neurosurgery) - 24.23(Obstetrics/Gynaecology) + 250.74(Opthalmology) + 136.10(Oral Maxillofacial) + 440.68(Orthopaedic) + 218.69(Otolaryngology (ENT)) + 115.49(Plastic Surgery) - 39.88(Thoracic Surgery) + 15.10(Urology) + 100.79(Vascular Surgery)
+
+General Surgery is the default, where all the other specialty variables are 0.
+The model predicts the following for average wait times by specialty:
+
+Although we can give an estimate of average wait times in Nova Scotia based on specialty from the model, only the waittimes from the following specialties are statistically significant: General Surgery, Dental, Opthalmology, Orthopaedic, and Otolaryngology (ENT) at 95% confidence. However, as the model is statistically significant with all the coefficients, then it can be assumed that the model can predict with 95% confidence the wait times from any specialty, even if the individual coefficient is not statistically significant.
+

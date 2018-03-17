@@ -197,7 +197,7 @@ $(document).ready(function () {
 <p>[1] Period [2] Specialty [3] Procedure [4] Provider<br />
 [5] Zone [6] Facility [7] Year [8] Quarter<br />
 [9] Consult_Median [10] Consult_90th [11] Surgery_Median [12] Surgery_90th</p>
-<p>The dataset contained 6843 observations and 12 features. Here are the definitions of the 12 features in the dataset:</p>
+<p>The dataset contained 6843 observations and 12 features. Viewing a sample of the dataset, it was determined that multiple variables were categorical, and the wait times were the only continuous variables. Here are the definitions of the 12 features in the dataset:</p>
 <table style="width:100%;">
 <colgroup>
 <col width="20%"></col>
@@ -500,16 +500,211 @@ $(document).ready(function () {
 </div>
 <div id="results" class="section level1">
 <h1>Results</h1>
-<p>When viewing a sample of the dataset, we see multiple variables which are categorical, and the wait times are the only continuous variables.</p>
-<p>The standard error of the estimate is 124.2, where it is the standard deviation of the variation of observations around the regression line (it is the standard deviation of the regression model). So waitimes average can be estimated as +-2(124.2) = 248.4. As this value is large when compared to the average waittimes in the sample, then the variation of observed y values from the regression line is also large. For future research, we should look for other variables which can explain more of the variation in waittimes (ie. costs for procedures, facilities funding, staffing levels, etc.). Multiple Coefficient of Determination: SST = SSE + SSR</p>
-<p>R^2 is 0.3872, but we do have to utilize the adjusted R^2, as we have multiple independent variables. The adjusted R^2 is 0.3612, where 36.12% of the variation in waittimes is explained by the variation in specialty, taking into account the sample size and number of independent variables Is the Model Significant? Hypotheses: H0: (  1 ) = (  2 ) = … = (  k ) = 0 (no linear relationship) HA: at least one (  i ) ≠ 0 (at least one independent variable affects y) F statistic = (SSR/k)/(SSE/(n-k-1))</p>
-<p>Since F = 14.9 is in the rejection region (it is greater than the F(critical) = 1.79), we reject the null hypothesis at alpha = 0.05, and accept the alternative hypothesis that at least one independent variable affects waittimes at 95% confidence. So we conclude that the regression model does explain a significant portion of the variation in waittimes. This conclusion is also confirmed by the F-statistic with a p-value: &lt; 2.2e-16, and therefore it is less than the alpha value of 0.05, and we can also conclude from this p-value that the model does explain a significant portion of the variation in waittimes. Here is the prediction model: waittimes = 74.8 + 166.58(Dental) + 44(General Surgery) + 35.08(Obstetrics/Gynaecology) + 122.41(Opthalmology) + 192.29(Oral Maxillofacial) + 331.09(Orthopaedic) + 170.04(Otolaryngology (ENT)) + 102.60(Plastic Surgery) + 62.53(Thoracic Surgery) + 84.47(Urology) + 86.70(Vascular Surgery)</p>
-<p>Cardiac Surgery is the default, where all the other specialty variables are 0. The model predicts the following for average wait times by specialty:</p>
-<p>Although we can give an estimate of average wait times in Nova Scotia based on specialty from the model, only the waittimes from the following specialties are statistically significant: Dental, Opthalmology, Oral Maxillofacial, Orthopaedic, Otolaryngology (ENT), and Plastic Surgery at 95% confidence. However, Cardiac Surgery (p = 0.06) and Urology (p = 0.08) are almost at 0.05, so the wait times for these specialties are close to being statistically significant.</p>
+<div id="build-the-model" class="section level2">
+<h2>Build the Model</h2>
+<p>Prior to building the statistical model the baseline factor was set to ‘general surgery’ instead of the default ‘cardiac surgery’ to determine the impact, if any, on the linear regression model with regards to the null hypothesis.</p>
+<p>A bivariate multiple linear regression model was constructed with two dependent variables (consult_90th and surgery_90th), representing the 90th percentiles for each instance of a surgical specialty’s wait time, added together to give the combined surgical wait time and one independent variable.</p>
+<div id="a-summary-of-the-multiple-linear-regression-model-is-as-follows" class="section level4">
+<h4>A summary of the multiple linear regression model is as follows:</h4>
+<p>Call: lm(formula = specialty90 ~ specialty)</p>
+<p>Residuals:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Min</th>
+<th>1Q</th>
+<th>Median</th>
+<th>3Q</th>
+<th>Max</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>-536.39</td>
+<td>-144.57</td>
+<td>-66.16</td>
+<td>70.76</td>
+<td>2366.55</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th>Coefficients:</th>
+<th>Estimate Std.</th>
+<th>Error</th>
+<th>t value</th>
+<th>Pr(&gt;</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>(Intercept)</td>
+<td>257.71</td>
+<td>38.80</td>
+<td>6.643</td>
+<td>1.68e-10 ***</td>
+</tr>
+<tr class="even">
+<td>specialtycardiac</td>
+<td>-117.31</td>
+<td>135.51</td>
+<td>-0.866</td>
+<td>0.387417</td>
+</tr>
+<tr class="odd">
+<td>specialtydental</td>
+<td>180.16</td>
+<td>82.30</td>
+<td>2.189</td>
+<td>0.029447 *</td>
+</tr>
+<tr class="even">
+<td>specialtyneurosurgery</td>
+<td>50.39</td>
+<td>99.67</td>
+<td>0.506</td>
+<td>0.613607</td>
+</tr>
+<tr class="odd">
+<td>specialtyobstetrics/gynaecology</td>
+<td>-24.23</td>
+<td>59.68</td>
+<td>-0.406</td>
+<td>0.685083</td>
+</tr>
+<tr class="even">
+<td>specialtyophthalmology</td>
+<td>250.74</td>
+<td>63.71</td>
+<td>3.935</td>
+<td>0.000106 ***</td>
+</tr>
+<tr class="odd">
+<td>specialtyoral maxillofacial</td>
+<td>136.10</td>
+<td>95.75</td>
+<td>1.421</td>
+<td>0.156338</td>
+</tr>
+<tr class="even">
+<td>specialtyorthopaedic</td>
+<td>440.68</td>
+<td>61.02</td>
+<td>7.222</td>
+<td>5.19e-12 ***</td>
+</tr>
+<tr class="odd">
+<td>specialtyotolaryngology (ent)</td>
+<td>218.69</td>
+<td>69.83</td>
+<td>3.131</td>
+<td>0.001930 **</td>
+</tr>
+<tr class="even">
+<td>specialtyplastic</td>
+<td>115.49</td>
+<td>84.41</td>
+<td>1.368</td>
+<td>0.172388</td>
+</tr>
+<tr class="odd">
+<td>specialtythoracic</td>
+<td>-39.88</td>
+<td>124.72</td>
+<td>-0.320</td>
+<td>0.749385</td>
+</tr>
+<tr class="even">
+<td>specialtyurology</td>
+<td>15.10</td>
+<td>73.05</td>
+<td>0.207</td>
+<td>0.836358</td>
+</tr>
+<tr class="odd">
+<td>specialtyvascular</td>
+<td>100.79</td>
+<td>124.72</td>
+<td>0.808</td>
+<td>0.419727</td>
+</tr>
+</tbody>
+</table>
+<p>Signif. codes: 0 | *** 0.001 | ** 0.01 | * 0.05 | ‘.’ 0.1 | ‘’ 1</p>
+<p>Residual standard error: 290.3 on 271 degrees of freedom<br />
+Multiple R-squared: 0.2383, Adjusted R-squared: 0.2046<br />
+F-statistic: 7.066 on 12 and 271 DF, p-value: 3.522e-11</p>
+</div>
+<div id="from-the-above-summary-of-the-model-the-following-statistical-measures-were-extracted" class="section level4">
+<h4>From the above summary of the model, the following statistical measures were extracted:</h4>
+<p>degrees of freedom: 13 and 271</p>
+<p>p-value of the model: 3.522271910^{-11}</p>
+<p>residual standard error: 290.3315348</p>
+<p>F-statistic: 7.0658736</p>
+<p>F-critical: 1.7583858</p>
+</div>
+<div id="an-analysis-of-variance-anova-of-the-linear-regression-model-was-used-to-validate-the-model" class="section level4">
+<h4>An analysis of variance (ANOVA) of the linear regression model was used to validate the model:</h4>
+<p>Analysis of Variance Table</p>
+<p>Response: specialty90</p>
+<table>
+<thead>
+<tr class="header">
+<th>Measure</th>
+<th>Df</th>
+<th>Sum Sq</th>
+<th>Mean Sq</th>
+<th>F value</th>
+<th>Pr(&gt;F)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>specialty</td>
+<td>12</td>
+<td>7147193</td>
+<td>595599</td>
+<td>7.0659</td>
+<td>3.522e-11 ***</td>
+</tr>
+<tr class="even">
+<td>Residuals</td>
+<td>271</td>
+<td>22843240</td>
+<td>84292</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="interpretation" class="section level1">
 <h1>Interpretation</h1>
-<p>Here is some text.</p>
+<p>The residual standard error (standard error of the estimate) is 290.33, where it is the standard deviation of the variation of observations around the regression line (it is the standard deviation of the regression model). So waitimes average can be estimated as +-2(290.33) = 580.66. As this value is large when compared to the average waittimes in the sample, then the variation of observed y values from the regression line is also large. For future research, we should look for other variables which can explain more of the variation in waittimes (ie. costs for procedures, facilities funding, staffing levels, etc.). Multiple Coefficient of Determination: SST = SSE + SSR</p>
+<p>R^2 is 0.2383, but we do have to utilize the adjusted R^2, as we have multiple independent variables. The adjusted R^2 is 0.2046, where 20.46% of the variation in waittimes is explained by the variation in specialty, taking into account the sample size and number of independent variables.</p>
+<p>Next, we want to determine if the model is significant. Hypothesis testing is set up as follows:</p>
+<div id="hypotheses-h0-1-2-k-0-no-linear-relationship" class="section level4">
+<h4>Hypotheses: H0: (  1 ) = (  2 ) = … = (  k ) = 0 (no linear relationship)</h4>
+</div>
+<div id="ha-at-least-one-i-0-at-least-one-independent-variable-affects-y" class="section level4">
+<h4>HA: at least one (  i ) ≠ 0 (at least one independent variable affects y)</h4>
+</div>
+<div id="f-statistic-ssrkssen-k-1" class="section level4">
+<h4>F statistic = (SSR/k)/(SSE/(n-k-1))</h4>
+<p>Since F = 7.07 is in the rejection region (it is greater than the F(critical) = 1.76), we reject the null hypothesis at alpha = 0.05, and accept the alternative hypothesis that at least one independent variable affects total surgical wait times at 95% confidence. According to the model the H0 (null hypothesis) should be rejected in favour of HA (alternative hypothesis). We determine that the model is significant.</p>
+<p>In addition, we conclude that the regression model does explain a significant portion of the variation in waittimes. This conclusion is also confirmed by the F-statistic with a p-value = 3.522271910^{-11}, and therefore it is less than the alpha value of 0.05, and we can also conclude from this p-value that the model does explain a significant portion of the variation in waittimes.</p>
+<p>An analysis of variance (ANOVA) of the linear regression model was used to validate the model. For example, the degrees of freedom, sum of squares, and mean squared can easily be retrieved for both the speciality and residuals parameters, and the F-statistic for the specialty parameter. The values of the F-statistic (7.0658736) and F-critical (1.7880147) indicate the H0 (null hypothesis) should be rejected in favour of HA (alternative hypothesis).</p>
+<p>Next, we extract the coefficients so the linear regression model equation can be constructed. Here is the prediction model:</p>
+</div>
+<div id="waittimes-257.71---117.31cardiac-surgery-180.16dental-50.39neurosurgery---24.23obstetricsgynaecology-250.74opthalmology-136.10oral-maxillofacial-440.68orthopaedic-218.69otolaryngology-ent-115.49plastic-surgery---39.88thoracic-surgery-15.10urology-100.79vascular-surgery" class="section level4">
+<h4>waittimes = 257.71 - 117.31(Cardiac Surgery) + 180.16(Dental) + 50.39(Neurosurgery) - 24.23(Obstetrics/Gynaecology) + 250.74(Opthalmology) + 136.10(Oral Maxillofacial) + 440.68(Orthopaedic) + 218.69(Otolaryngology (ENT)) + 115.49(Plastic Surgery) - 39.88(Thoracic Surgery) + 15.10(Urology) + 100.79(Vascular Surgery)</h4>
+<p>General Surgery is the default, where all the other specialty variables are 0. The model predicts the following for average wait times by specialty:</p>
+<p>Although we can give an estimate of average wait times in Nova Scotia based on specialty from the model, only the waittimes from the following specialties are statistically significant: General Surgery, Dental, Opthalmology, Orthopaedic, and Otolaryngology (ENT) at 95% confidence. However, as the model is statistically significant with all the coefficients, then it can be assumed that the model can predict with 95% confidence the wait times from any specialty, even if the individual coefficient is not statistically significant.</p>
+</div>
 </div>
 <div id="conclusion" class="section level1">
 <h1>Conclusion</h1>

@@ -71,7 +71,7 @@ Once the data was loaded, the feature names of the data set were determined:
 [5] Zone          [6] Facility        [7] Year            [8] Quarter       
 [9] Consult_Median  [10] Consult_90th   [11] Surgery_Median [12] Surgery_90th
 
-The dataset contained 6843 observations and 12 features. Here are the definitions of the 12 features in the dataset:
+The dataset contained 6843 observations and 12 features. Viewing a sample of the dataset, it was determined that multiple variables were categorical, and the wait times were the only continuous variables. Here are the definitions of the 12 features in the dataset:
 
 Feature         | Definition
 --------------- | -------------------------------------------------------------
