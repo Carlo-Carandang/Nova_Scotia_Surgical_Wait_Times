@@ -148,35 +148,4 @@ Although we can give an estimate of average wait times in Nova Scotia based on s
 
 However, the above only has part of the wait times...the total wait includes consult wait time and surgical wait time, so we have to also add the consult wait times.
 
-Consult Wait Times:
-
-Isolate only rows with 'All' Procedures - columns 2:10, and remove NA values from Consult_90th column
-```{r}
-specialty1 <- Surgical_Wait_Times_2017_09_04[Surgical_Wait_Times_2017_09_04$Procedure=="All",2:10]
-specialty1
-specialty1 <- specialty1[!is.na(specialty1$Consult_90th),]
-specialty1
-```
-Set independent variables
-```{r}
-X <- specialty1[,1]
-X
-```
-Set dependent variable
-```{r}
-Y <- specialty1[,9]
-Y
-```
-Linear Regression
-```{r}
-model <- data.frame(X,Y)
-mod.specialty <- lm(formula = Y ~ X, data = model)
-summary(mod.specialty)
-```
-Since p-value for the model is 0.008204, we reject the null hypothesis at alpha = 0.05, and accept the alternative hypothesis that at least one independent variable affects waittimes at 95% confidence.
-
-Here is the prediction model:
-
-total waittimes = (58.20 + 74.8) + (145.11 + 166.58)(Dental) + (80.71 + 44)(General Surgery) + (134 + 41.10)(Neurosurgery) + (64.09 + 35.08)(Obstetrics/Gynaecology) + (253.04 + 122.41)(Opthalmology) + (68.53 + 192.29)(Oral Maxillofacial) + (234.30 + 331.09)(Orthopaedic) + (173.36 + 170.04)(Otolaryngology (ENT)) + (137.60 + 102.60)(Plastic Surgery) + (22.30 + 62.53)(Thoracic Surgery) + (55.35 + 84.47)(Urology) + (138.80 + 86.70)(Vascular Surgery)
-
-Cardiac Surgery is the default, where all the other specialty variables are 0.
+See data_analysis.rmd file in folder /data_analysis for the analysis which includes the total wait times of the sum of consult wait times and surgical wait times.
