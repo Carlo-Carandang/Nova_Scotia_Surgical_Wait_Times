@@ -23,6 +23,9 @@ knitr::read_chunk('../data_analysis/code/install_packages.r')
 Obtain the surgical wait times data from the Nova Scotia Government [Open Data Portal](https://data.novascotia.ca).
 
 - Navigate to the Open Data Portal
+- Select the Data Catalogue
+- Search ‘surgical wait times’
+- Select Surgical Wait Times
 - Select the Export option
 - Select [CSV](https://data.novascotia.ca/api/views/wu5w-qxki/rows.csv?accessType=DOWNLOAD)
 - Save the data file to the project subdirectory (data_analysis/data).
@@ -44,15 +47,17 @@ knitr::read_chunk('../data_analysis/code/load_data.r')
 knitr::read_chunk('../data_analysis/code/wrangle_data.r')
 ```
 
+#### Load libraries
+
 ```{r, wrangling, echo = FALSE}
 ```
 
-Determine the feature names.
+#### Determine the feature names.
 
 ```{r, column-names, echo = FALSE, comment = ''}
 ```
 
-Examine the data set for any missing values.
+#### Examine the data set for any missing values.
 
 ```{r, missing-values-check, echo = FALSE, comment = ''}
 ```
@@ -75,7 +80,7 @@ knitr::read_chunk('../data_analysis/code/visualize_data.r')
 
 #### Median Wait Time by Surgical Specialty
 
-```{r, median_wait, echo = FALSE}
+```{r, median-wait, echo = FALSE}
 ``` 
 
 #### Wait Time Distribution by Specialty
@@ -120,16 +125,16 @@ kurtosis(wait_time_distribution_by_specialty$surgery_90th)
 knitr::read_chunk('../data_analysis/code/build_model.r')
 ```
 
-A linear regression model is constructed.
+#### A linear regression model is constructed.
 
 ```{r, linear-regression-model, echo = FALSE, results = 'hide'}
 ```
-
+#### Model
 ```{r, model, echo = FALSE, comment = ''}
 ``` 
-
+#### Prediction Model
 ```{r, prediction-model, echo = FALSE, comment = ''}
 ``` 
-
+#### ANOVA
 ```{r, anova, echo = FALSE, results = 'markup'}
 ```
