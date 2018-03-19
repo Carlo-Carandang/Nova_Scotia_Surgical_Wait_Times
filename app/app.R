@@ -10,9 +10,9 @@ ui <- fluidPage(
   mainPanel(
     h5("Estimated Total Wait Time (days)"),
     h5(textOutput("myTime")),
+    h5("Preprint- Analysis of Surgical Wait Times in Nova Scotia:", a("https://www.researchgate.net/publication/323837798_Analysis_of_Surgical_Wait_Times_in_Nova_Scotia", href="https://www.researchgate.net/publication/323837798_Analysis_of_Surgical_Wait_Times_in_Nova_Scotia")),
     h5("Code Repository:", a("https://github.com/Carlo-Carandang/Nova_Scotia_Surgical_Wait_Times", href="https://github.com/Carlo-Carandang/Nova_Scotia_Surgical_Wait_Times")),
-    h5("Data Analysis:", a("http://rpubs.com/gdhorne/350850", href="http://rpubs.com/gdhorne/350850")),
-    h5("Data Visualization:", a("http://rpubs.com/gdhorne/347392", href="http://rpubs.com/gdhorne/347392"))
+    h5("Data Analysis:", a("http://rpubs.com/carandangc/Analysis_Nova_Scotia_Surgical_Wait_Times", href="http://rpubs.com/carandangc/Analysis_Nova_Scotia_Surgical_Wait_Times"))
   )
 )
 

@@ -7,7 +7,7 @@ output:
 
 _Note: Write R code in external R scripts, and use `read_chunk()` to read them into the current document._
 
-### Initial Evironment Set-up
+### Initial Environment Set-up
 
 The tidyverse package set.
 
