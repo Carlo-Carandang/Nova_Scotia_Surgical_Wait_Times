@@ -6,6 +6,4 @@ Authors: Carlo Carandang, Gregory Horne, William Wells, and Catherine Stokes.
 
 NS Surgical Wait Times App: https://carlo-carandang.shinyapps.io/Nova_Scotia_Surgical_Wait_Times_App/
 
-Data Analysis: http://rpubs.com/gdhorne/350850
-
-Data Visualization: http://rpubs.com/gdhorne/347392
+Data Analysis: http://rpubs.com/carandangc/Analysis_Nova_Scotia_Surgical_Wait_Times
