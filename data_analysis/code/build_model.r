@@ -6,27 +6,27 @@ library(broom)
 library(purrr)
 
 #isolate rows with procedure = 'all'
-wait_times <- wait_times %>% filter(Procedure == "All")
+#wait_times <- wait_times %>% filter(procedure == "all")
 
 #remove rows with null values in Consult_90th column
-wait_times <- wait_times[!is.na(wait_times$Consult_90th),]
+wait_times <- wait_times[!is.na(wait_times$consult_90th),]
 
 #remove rows with null values in Surgery_90th column
-wait_times <- wait_times[!is.na(wait_times$Surgery_90th),]
+wait_times <- wait_times[!is.na(wait_times$surgery_90th),]
 
 #Prior to building the statistical model the baseline factor is ‘general surgery’ instead of the default ‘cardiac surgery’ to determine the impact, if any, on the linear regression model w.r.t. the null hypothesis.
 
 #A bivariate linear regression model is constructed with two dependent variables (consult_90th and surgery_90th), representing the 90th percentiles for each instance of a surgical specialty’s wait time, added together to give the combined surgical wait time and one independent variable.
-specialty_factor <- wait_times %>% select(Specialty) %>% flatten_chr() %>% 
-  as.factor() %>% relevel('General Surgery')
+specialty_factor <- wait_times %>% select(specialty) %>% flatten_chr() %>% 
+  as.factor() %>% relevel('general')
 
 wait_times <- wait_times %>% 
-  mutate(Specialty =  specialty_factor)
+  mutate(specialty =  specialty_factor)
 
-specialty_consult90 <- wait_times %>% select(Consult_90th) %>% unlist()
-specialty_surgery90 <- wait_times %>% select(Surgery_90th) %>% unlist()
+specialty_consult90 <- wait_times %>% select(consult_90th) %>% unlist()
+specialty_surgery90 <- wait_times %>% select(surgery_90th) %>% unlist()
 specialty90 <- specialty_consult90 + specialty_surgery90
-specialty <- wait_times %>% select(Specialty) %>% unlist()
+specialty <- wait_times %>% select(specialty) %>% unlist()
 
 model <- lm(formula = specialty90 ~ specialty)
 

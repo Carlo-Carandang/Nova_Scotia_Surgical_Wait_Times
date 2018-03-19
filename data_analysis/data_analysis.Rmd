@@ -57,11 +57,61 @@ Examine the data set for any missing values.
 ```{r, missing-values-check, echo = FALSE, comment = ''}
 ```
 
+### Visualise the Data
+
 ```{r, echo = FALSE}
 knitr::read_chunk('../data_analysis/code/visualize_data.r')
 ```
 
+#### Feature Relationships
+
 ```{r, feature-relationships, echo = FALSE}
+```
+
+#### Total Wait Time by Surgical Specialty
+
+```{r, total-years, echo = FALSE}
+```
+
+#### Median Wait Time by Surgical Specialty
+
+```{r, median_wait, echo = FALSE}
+``` 
+
+#### Wait Time Distribution by Specialty
+
+```{r, distribution-specialty, echo = FALSE}
+``` 
+
+#### Wait Time Distribution
+
+```{r, distribution, echo = FALSE}
+``` 
+
+#### Wait Time Distribution2
+
+```{r, distribution2, echo = FALSE}
+``` 
+
+#### Wait Time Distribution3
+
+```{r, distribution3, echo = FALSE}
+```
+
+```{r}
+skewness(wait_time_distribution_by_specialty$consult_90th, na.rm = TRUE)
+```
+
+```{r}
+kurtosis(wait_time_distribution_by_specialty$consult_90th, na.rm = TRUE)
+```
+
+```{r}
+skewness(wait_time_distribution_by_specialty$surgery_90th)
+```
+
+```{r}
+kurtosis(wait_time_distribution_by_specialty$surgery_90th)
 ```
 
 ### Build Model
