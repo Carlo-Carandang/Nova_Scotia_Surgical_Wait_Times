@@ -1,6 +1,6 @@
 # Nova_Scotia_Surgical_Wait_Times
 
-To visualize this RMarkdown document, open the file "cjph_research_article.rmd", then choose knit to HTML.
+To visualize this RMarkdown document, open the file "cjph_research_article.rmd" in R, then choose 'Knit to HTML'. Alternatively, you can visualize this analysis by downloading the file "cjph_research_article.html", then open the file, which in turn will open in your default web browser.
 
 Authors: Carlo Carandang, Gregory Horne, William Wells, and Catherine Stokes.
 
