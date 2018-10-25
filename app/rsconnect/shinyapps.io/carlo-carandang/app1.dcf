@@ -1,0 +1,12 @@
+name: app1
+title: app1
+username:
+account: carlo-carandang
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 535200
+bundleId: 1663401
+url: https://carlo-carandang.shinyapps.io/app1/
+when: 1540502423.95524
+asMultiple: FALSE
+asStatic: FALSE

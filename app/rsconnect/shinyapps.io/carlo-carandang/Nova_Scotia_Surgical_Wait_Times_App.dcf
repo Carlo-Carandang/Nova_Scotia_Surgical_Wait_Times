@@ -5,8 +5,8 @@ account: carlo-carandang
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 299829
-bundleId: 1275709
+bundleId: 1663422
 url: https://carlo-carandang.shinyapps.io/Nova_Scotia_Surgical_Wait_Times_App/
-when: 1521436576.11053
+when: 1540503117.76223
 asMultiple: FALSE
 asStatic: FALSE
