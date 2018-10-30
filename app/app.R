@@ -3,6 +3,7 @@ library(shiny)
 ui <- fluidPage(
   tags$head(
     tags$meta(charset="UTF-8"),
+    tags$meta(name="google-site-verification", content="HumQhZCK7kIlpp1sWdABFPgjHZ3nIve_5Q53NsOEPAA"),
     tags$meta(name="description", content="Surgical wait times in Nova Scotia are at crisis levels, as patients are waiting too long on the wait list. This can lead to worsening illness course, and in some cases premature death. This app gives you the accurate wait times prediction, to help you be an informed patient."),
     tags$meta(name="keywords", content="surgical wait times in Nova Scotia"),
     tags$meta(name="viewport", content="width=device-width, initial-scale=1.0")
