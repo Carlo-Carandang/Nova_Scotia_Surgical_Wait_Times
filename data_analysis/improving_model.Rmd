@@ -1,7 +1,7 @@
 ---
 title: "Improving a Multiple Regression Model by Choosing a Different Baseline Coefficient"
-author: "Carlo Carandang, Gregory Horne"
-date: "July 1, 2018"
+author: "Carlo Carandang"
+date: "November 23, 2018"
 output:
   pdf_document: default
   html_document: default
